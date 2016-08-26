@@ -1,0 +1,178 @@
+.home {
+background-color:#00003f;
+}
+.item-login {
+	background-color:#00003f;
+	color:#ffffff;
+  padding:0;
+}
+.item .item-inner {
+  padding-right: 0;
+  border-bottom: 1px solid #dedede; }
+  ion-label {
+  margin: 8px 0 8px 0; }
+.login-container .row-center .form-login {
+    position:absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    top:50%;
+    transform:translateY(-50%);
+}
+.toolbar-background {
+  border-color: #b2b2b2;
+  background: #ffda44; }
+  .item-input ion-label,
+.item-select ion-label,
+.item-datetime ion-label {
+  color: #ffffff; }
+  .home-container .row-center img {
+    position:absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    top:50%;
+    transform:translateY(-50%);
+}
+.button {
+  margin: 0.4rem 0.2rem;
+  padding: 0 1em;
+  height: 2.8em;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  color: #00003f;
+  background-color: #ffda44; }
+  .button:hover:not(.disable-hover) {
+    text-decoration: none;
+    opacity: 0.8; }
+  .button.activated {
+    background-color: #3474e1;
+    opacity: 1; }
+    .btn-signup {
+  width: 90%;
+  float:none;
+  margin:0 auto;
+    }
+ .content-signup {
+  background-color: #00003f; }
+  #signup-input1 {
+ background-color: #00003f;
+ width:100%;
+  }
+  .item-signup {
+padding-right:16px;
+ background-color: #00003f;
+  }
+  .input-signup {
+  width:100%;
+  border-radius:4px;
+  padding:8px;
+  border: none;
+  }
+  ion-list {
+  margin: -1px 0 22px 0; }
+  .text-header {
+  color:#ffffff;
+  text-align:center;
+  margin-bottom:30px;
+  }
+  .btn-login {
+  margin-bottom: 10px;
+  }
+  .input-login {
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow:none;
+  outline:0;
+  color:#000000;
+  -webkit-appearance: none; 
+  padding:8px;
+  }
+      ion-list .item .item-inner {
+    border-bottom:0; }
+    .item-avatar,
+.item-avatar .item-content,
+.item-avatar-left,
+.item-avatar-left .item-content {
+  padding-left: 72px;
+  min-height: 72px; }
+  .item-avatar > img:first-child,
+  .item-avatar .item-image,
+  .item-avatar .item-content > img:first-child,
+  .item-avatar .item-content .item-image,
+  .item-avatar-left > img:first-child,
+  .item-avatar-left .item-image,
+  .item-avatar-left .item-content > img:first-child,
+  .item-avatar-left .item-content .item-image {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; }
+
+.item-avatar-right,
+.item-avatar-right .item-content {
+  padding-right: 72px;
+  min-height: 72px; }
+  .item-avatar-right > img:first-child,
+  .item-avatar-right .item-image,
+  .item-avatar-right .item-content > img:first-child,
+  .item-avatar-right .item-content .item-image {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; }
+
+.item-thumbnail-left,
+.item-thumbnail-left .item-content {
+  padding-top: 8px;
+  padding-left: 106px;
+  min-height: 100px; }
+  .item-thumbnail-left > img:first-child,
+  .item-thumbnail-left .item-image,
+  .item-thumbnail-left .item-content > img:first-child,
+  .item-thumbnail-left .item-content .item-image {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    max-width: 80px;
+    max-height: 80px;
+    width: 100%;
+    height: 100%; }
+
+.item-avatar.item-complex,
+.item-avatar-left.item-complex,
+.item-thumbnail-left.item-complex {
+  padding-top: 0;
+  padding-left: 0; }
+
+.item-thumbnail-right,
+.item-thumbnail-right .item-content {
+  padding-top: 8px;
+  padding-right: 106px;
+  min-height: 100px; }
+  .item-thumbnail-right > img:first-child,
+  .item-thumbnail-right .item-image,
+  .item-thumbnail-right .item-content > img:first-child,
+  .item-thumbnail-right .item-content .item-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    max-width: 80px;
+    max-height: 80px;
+    width: 100%;
+    height: 100%; }
+
+.item-avatar-right.item-complex,
+.item-thumbnail-right.item-complex {
+  padding-top: 0;
+  padding-right: 0; }

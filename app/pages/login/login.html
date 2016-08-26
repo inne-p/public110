@@ -1,0 +1,50 @@
+
+
+    <ion-navbar *navbar>
+        <ion-title>
+            Login Public110
+        </ion-title>
+    </ion-navbar>
+
+    <ion-content class="home">
+       
+
+
+        <section class="login-container">
+    <div class="row row-center" >
+    <div class="form-login">
+         <ion-list inset>
+        <div class="col text-center" style="text-align:center;">
+            <img alt="Logo" height="200" src="build/img/logo.png">
+        </div>
+        <br>
+            <ion-item class="item-login">
+            <input class="input-login" type="text" placeholder="Username" [(ngModel)]="username">
+              <!--   <ion-label>Username</ion-label>
+                <ion-input [(ngModel)]="username" type="text"></ion-input> -->
+            </ion-item>
+            <ion-item class="item-login">
+             <input class="input-login" type="password" placeholder="Password" [(ngModel)]="pass">
+               <!--  <ion-label>Password</ion-label>
+                <ion-input [(ngModel)]="pass" type="password"></ion-input> -->
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button class="btn-login" block (click)="loginPublic()">Login</button>
+            <button block (click)="SignUp()">Or create an account</button>
+        </div>
+        <ion-card *ngFor="let repo of foundRepos">
+            <ion-card-header>
+                {{ repo.nik}}
+            </ion-card-header>
+            <ion-card-content>
+                {{ repo.description }}
+            </ion-card-content>
+        </ion-card>
+        </div>
+      </div>
+    </section>
+
+
+
+    </ion-content>
