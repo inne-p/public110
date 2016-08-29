@@ -1,68 +1,67 @@
 import {Component, ViewChild } from '@angular/core';
-import {Http} from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import {HomePage} from '../home/home';
 import {TabsPage} from '../tabs/tabs';
 import {AboutPage} from '../about/about';
 import {ContactPage} from '../contact/contact';
-import {NavController, Alert, Platform} from 'ionic-angular';
-import {LoginService} from '../../services/loginservice';
+import {NavController, AlertController, Platform} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
+import {LocationTracker} from '../../providers/location-tracker/location-tracker';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers : [LoginService]
+  providers : [LocationTracker]
 })
 export class LoginPage {
+  login: any = {};
   username: any;
   public foundRepos;
   pass: any;
   submitted = false;
-  constructor(public navCtrl: NavController, private platform: Platform, private logins: LoginService) {
-    this.platform.ready().then(() => {
-            /*var networkState = navigator.connection.type;
-            var states = {};
-            states[Connection.UNKNOWN]  = 'Unknown connection';
-            states[Connection.ETHERNET] = 'Ethernet connection';
-            states[Connection.WIFI]     = 'WiFi connection';
-            states[Connection.CELL_2G]  = 'Cell 2G connection';
-            states[Connection.CELL_3G]  = 'Cell 3G connection';
-            states[Connection.CELL_4G]  = 'Cell 4G connection';
-            states[Connection.CELL]     = 'Cell generic connection';
-            states[Connection.NONE]     = 'No network connection';
-            let alert = Alert.create({
-                title: "Connection Status",
-                subTitle: states[networkState],
-                buttons: ["OK"]
-            });
-            this.navCtrl.present(alert);*/
-        });
+  constructor(public http : Http, public alertController: AlertController, public navCtrl: NavController, private platform: Platform, private tracker: LocationTracker) {
+    //this.tracker.logOut();
   }
 
-  loginPublic(){
-      console.log(this.username);
-      console.log(this.pass);
-      if(this.username=='' || this.pass==''){
-        alert("Lengkapi Data Login Anda");
-      }
-      else{
-      this.logins.getLogin(this.username).subscribe(
-          data => {
-              this.foundRepos = data.json();
-              if(this.foundRepos[0]!=null){
-                  console.log(this.foundRepos[0]);
-                  this.navCtrl.setRoot(HomePage);
-              }else{
-                alert("Maaf, email "+this.username+" belum terdaftar");
-              }
+  getLogin()
+  {
+  	console.log(this.login);
+  	let url= this.tracker.url + "Users/login";
+  	let headers = new Headers({ 'Content-Type': 'application/json' });
+  	let options = new RequestOptions({ headers: headers });
 
-          },
-          err => console.error(err),
-          () => console.log('getRepos completed')
-      );
-      }
+  	let postBodyLogin: any = {
+  	  "username": this.login.email,
+  	  "password": this.login.password
+  	};
+
+  	this.http.post(url, postBodyLogin, options)
+  			.subscribe(data =>
+  			{
+  				let body = data.json();
+  				console.log(body);
+  				this.tracker.logedin(this.login.email, body);
+  				this.navCtrl.setRoot(HomePage)
+  			},
+  			error =>
+  			{
+  				this.showAlert();
+  				console.log(error);
+  			});
+
   }
+
+  showAlert() {
+    let alert = this.alertController.create({
+      title: 'Perhatian',
+      subTitle: 'Login Gagal, mungkin user atau passwordnya keliru atau tidak ada koneksi internet',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   SignUp() {
- this.navCtrl.setRoot(SignupPage);
+    this.navCtrl.setRoot(SignupPage);
   }
 
 
