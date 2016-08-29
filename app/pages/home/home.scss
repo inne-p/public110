@@ -2,10 +2,15 @@
 background-color:#00003f;
 }
 .item-login {
-	background-color:#00003f;
-	color:#ffffff;
+	background-color:#00003f !important;
+	color:#ffda44;
   padding:0;
 }
+.item-login .item-input .input-has-focus .item-inner{
+	border-bottom-color: #ffda44;
+	box-shadow: inset 0 -1px 0 0 #ffda44;
+}
+
 .item .item-inner {
   padding-right: 0;
   border-bottom: 1px solid #dedede; }
@@ -87,7 +92,7 @@ padding-right:16px;
   box-shadow:none;
   outline:0;
   color:#000000;
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   padding:8px;
   }
       ion-list .item .item-inner {
