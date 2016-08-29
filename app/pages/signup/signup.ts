@@ -1,39 +1,69 @@
 import {Component, ViewChild } from '@angular/core';
-import {Http} from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import {HomePage} from '../home/home';
 import {AboutPage} from '../about/about';
+import {LoginPage} from '../login/login';
 import {ContactPage} from '../contact/contact';
-import {NavController, Alert, Platform} from 'ionic-angular';
+import { LocationTracker } from '../../providers/location-tracker/location-tracker';
+import {NavController, AlertController, Platform} from 'ionic-angular';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   templateUrl: 'build/pages/signup/signup.html'
 })
 export class SignupPage {
-  login: any = {};
+  signup: any = {};
+  public nik: any = '';
   submitted = false;
-  constructor(public navCtrl: NavController, private platform: Platform) {
-    this.platform.ready().then(() => {
-            /*var networkState = navigator.connection.type;
-            var states = {};
-            states[Connection.UNKNOWN]  = 'Unknown connection';
-            states[Connection.ETHERNET] = 'Ethernet connection';
-            states[Connection.WIFI]     = 'WiFi connection';
-            states[Connection.CELL_2G]  = 'Cell 2G connection';
-            states[Connection.CELL_3G]  = 'Cell 3G connection';
-            states[Connection.CELL_4G]  = 'Cell 4G connection';
-            states[Connection.CELL]     = 'Cell generic connection';
-            states[Connection.NONE]     = 'No network connection';
-            let alert = Alert.create({
-                title: "Connection Status",
-                subTitle: states[networkState],
-                buttons: ["OK"]
-            });
-            this.navCtrl.present(alert);*/
-        });
+  constructor(public tracker: LocationTracker, public http:Http, public alertController: AlertController, public navCtrl: NavController, private platform: Platform) {
+
   }
 
-  loginPublic(){
-      console.log(this.login);
+  signupPublic(){
+      console.log(this.signup);
       alert("hahahaha");
+  }
+
+  showAlert() {
+    let alert = this.alertController.create({
+      title: 'Perhatian',
+      subTitle: 'Registrasi Gagal, coba nomor yang lain atau cek koneksi internet',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  getRegister()
+  {
+  console.error(this.signup);
+	let url= this.tracker.url + "Users";
+	let headers = new Headers({ 'Content-Type': 'application/json' });
+	let options = new RequestOptions({ headers: headers });
+	let postBodyLogin: any = {
+	  "realm": "publik110",
+	  "username": this.signup.email,
+	  "password": this.signup.pass,
+	  "credentials": {},
+	  "challenges": {},
+	  "email": this.signup.email,
+	  "emailVerified": true,
+	  "status": "active",
+	  "created": new Date().toJSON(),
+	  "lastUpdated": new Date().toJSON()
+	};
+	this.http.post(url, postBodyLogin, options)
+			.subscribe(() =>
+			{
+				this.navCtrl.setRoot(LoginPage);
+			},
+			error =>
+			{
+				this.handleError(error);
+			});
+  }
+
+  handleError(error) {
+        console.error(error);
+		this.showAlert();
   }
 }
