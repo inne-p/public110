@@ -1,43 +1,38 @@
-<ion-view title="Signup" id="page8" class=" ">
+<ion-header>
+  <ion-navbar>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+</ion-header>
     <ion-content  class="content-signup has-header">
-            <section class="login-container">
-    <div class="row row-center" >
-    <div class="form-login">
-<h1 class="text-header">Sign Up Police@110</h1>
-        <form id="signup-form1" class="list">
-            <ion-list id="signup-list1" class="" no-lines>
-                <label class="item-signup item item-input" id="signup-input1">
 
-                  <input class="input-signup" type="text" id="nonik" placeholder="Nomor KTP" ng-model="daftar.nonik" required>
-                </label>
-                <label class="item-signup item item-input " id="signup-input1">
-
-                    <input class="input-signup" type="text" id="name" placeholder="Name" ng-model="daftar.name" required>
-                </label>
-                <label class="item-signup item item-input " id="signup-input5">
-
-                    <input class="input-signup" type="text" id="phone" placeholder="No Telp" ng-model="daftar.telp" ng-maxlength="15" required>
-                </label>
-                <label class="item-signup item item-input " id="signup-input4">
-                    <input class="input-signup" type="text" id="email1" placeholder="Email" ng-model="daftar.email" ng-minlength="5" required>
-                </label>
-                <label class="item-signup item item-input " id="signup-input4">
-                    <input class="input-signup" type="text" id="addr" placeholder="Alamat" ng-model="daftar.alamat" required>
-                </label>
-                <label class="item-signup item item-input " id="signup-input3" >
-
-                    <input class="input-signup" type="password" placeholder="Password" >
-                </label>
-                <label class="item-signup item item-input " id="signup-input2" >
-
-                    <input class="input-signup" type="password" id="pass1" placeholder="Confirm Password" ng-model="daftar.pass">
-                </label>
+        <form (ngSubmit)="getRegister()" #signupForm="ngForm">
+            <ion-list padding>
+              <ion-item class="item-login">
+                <ion-label floating>Email</ion-label>
+                <ion-input class="form-control " required [(ngModel)]="signup.email" type="text" name="email" id="email"></ion-input>
+              </ion-item>
+              <!--<ion-item class="item-login">
+                <ion-label floating>Nama</ion-label>
+                <ion-input class="form-control " required [(ngModel)]="signup.nama" type="text" name="nama" id="nama"></ion-input>
+              </ion-item>
+              <ion-item class="item-login">
+                <ion-label floating>No Telp</ion-label>
+                <ion-input class="form-control " required [(ngModel)]="signup.telp" type="tel" name="telp" id="telp"></ion-input>
+              </ion-item>
+              <ion-item class="item-login">
+                <ion-label floating>Email</ion-label>
+                <ion-input class="form-control " required [(ngModel)]="signup.email" type="email" name="email" id="email"></ion-input>
+              </ion-item>
+              <ion-item class="item-login">
+                <ion-label floating>Alamat</ion-label>
+                <ion-input class="form-control " required [(ngModel)]="signup.addr" type="text" name="addr" id="addr"></ion-input>
+              </ion-item>-->
+              <ion-item class="item-login">
+                <ion-label floating>Password</ion-label>
+                <ion-input class="form-control " required [(ngModel)]="signup.pass" type="password" name="pass" id="pass"></ion-input>
+              </ion-item>
             </ion-list>
             <button block ng-click="onSubmit()" class="btn-signup"> Sign up</button>
         </form>
 
-                </div>
-      </div>
-    </section>
     </ion-content>
-</ion-view>
