@@ -6,45 +6,32 @@
         </ion-title>
     </ion-navbar>
 
-    <ion-content class="home">
-       
-
-
-        <section class="login-container">
-    <div class="row row-center" >
-    <div class="form-login">
-         <ion-list inset>
-        <div class="col text-center" style="text-align:center;">
+    <ion-content padding class="home">
+        <div class="col text-center" style="padding-top:50px;text-align:center;">
             <img alt="Logo" height="200" src="build/img/logo.png">
         </div>
         <br>
-            <ion-item class="item-login">
-            <input class="input-login" type="text" placeholder="Username" [(ngModel)]="username">
-              <!--   <ion-label>Username</ion-label>
-                <ion-input [(ngModel)]="username" type="text"></ion-input> -->
-            </ion-item>
-            <ion-item class="item-login">
-             <input class="input-login" type="password" placeholder="Password" [(ngModel)]="pass">
-               <!--  <ion-label>Password</ion-label>
-                <ion-input [(ngModel)]="pass" type="password"></ion-input> -->
-            </ion-item>
-        </ion-list>
-        <div padding>
-            <button class="btn-login" block (click)="loginPublic()">Login</button>
-            <button block (click)="SignUp()">Or create an account</button>
+        <form (ngSubmit)="getLogin()" #loginForm="ngForm" padding>
+          <ion-item class="item-login">
+            <ion-label floating>Email</ion-label>
+            <ion-input class="form-control" required [(ngModel)]="login.email" type="email" name="email" id="email" #email="ngModel" ></ion-input>
+            <div [hidden]="email.valid || email.pristine"
+                     class="alert alert-danger">
+                  Email is required
+                </div>
+          </ion-item>
+          <ion-item class="item-login">
+            <ion-label floating>Password</ion-label>
+            <ion-input class="form-control" required [(ngModel)]="login.password" type="password" name="passwd" id="passwd"></ion-input>
+          </ion-item>
+        <div padding-top>
+          <button class="button button-large button-positive icon-left" type="submit" block [disabled]="!loginForm.form.valid">
+            <ion-icon name="log-in"></ion-icon>Login</button>
+
+
         </div>
-        <ion-card *ngFor="let repo of foundRepos">
-            <ion-card-header>
-                {{ repo.nik}}
-            </ion-card-header>
-            <ion-card-content>
-                {{ repo.description }}
-            </ion-card-content>
-        </ion-card>
+        </form>
+        <div padding-left padding-right>
+          <button block padding (click)="SignUp()">Or create an account</button>
         </div>
-      </div>
-    </section>
-
-
-
     </ion-content>
