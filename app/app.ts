@@ -16,6 +16,7 @@ import {OranghilangPage} from './pages/oranghilang/oranghilang';
 import {LalulintasPage} from './pages/lalulintas/lalulintas';
 import {ProsedurPage} from './pages/prosedur/prosedur';
 import {SettingsPage} from './pages/settings/settings';
+import { LocationTracker } from './providers/location-tracker/location-tracker';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -26,7 +27,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   pages: Array<{title: string, component: any}>;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, public tracker: LocationTracker) {
+    this.initializeApp(tracker);
     this.rootPage = LoginPage;
     this.pages = [
       { title: 'Beranda', component: HomePage },
@@ -39,10 +41,29 @@ export class MyApp {
       { title: 'Settings', component: SignupPage },
       { title: 'Logout', component: SignupPage }
     ];
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+
+  }
+
+  initializeApp(tracker: LocationTracker) {
+    this.platform.ready().then(() => {
+		tracker.getConfig("nik").then((data) => {
+			let res = data.res;
+			if (res.rows.length>0) {
+				tracker.getConfig("token").then((data) => {
+					this.nav.setRoot(HomePage);
+				},
+				(error)=> {
+					this.nav.setRoot(LoginPage);
+				});
+			}
+			else{
+				this.nav.setRoot(LoginPage);
+			}
+		}, (error) => {
+				console.log("ERROR: " + JSON.stringify(error));
+				this.nav.setRoot(LoginPage);
+		});
+		StatusBar.styleDefault();
     });
   }
 
@@ -51,4 +72,4 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [LocationTracker]);
