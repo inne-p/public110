@@ -33,14 +33,45 @@ export class SignupPage {
     alert.present();
   }
 
+  addUserDetail()
+  {
+  console.log(this.signup);
+	let url= this.tracker.url + "publiks";
+	let headers = new Headers({ 'Content-Type': 'application/json' });
+	let options = new RequestOptions({ headers: headers });
+	let postBodyLogin: any = {
+	  "nama": this.signup.nama,
+	  "alamat": this.signup.alamat,
+	  "realm": "public110",
+    "username": this.signup.email,
+    "password" : this.signup.pass,
+	  "email": this.signup.email,
+    "credentials": {},
+    "challenges": {},
+	  "emailVerified": true,
+	  "status": "active",
+	  "created": new Date().toJSON(),
+	  "lastUpdated": new Date().toJSON()
+	};
+	this.http.post(url, postBodyLogin, options)
+			.subscribe(() =>
+			{
+				console.log(this.signup);
+			},
+			error =>
+			{
+				this.handleError(error);
+			});
+  }
+
   getRegister()
   {
-  console.error(this.signup);
+  console.log(this.signup);
 	let url= this.tracker.url + "Users";
 	let headers = new Headers({ 'Content-Type': 'application/json' });
 	let options = new RequestOptions({ headers: headers });
 	let postBodyLogin: any = {
-	  "realm": "publik110",
+	  "realm": "public110",
 	  "username": this.signup.email,
 	  "password": this.signup.pass,
 	  "credentials": {},
@@ -54,6 +85,7 @@ export class SignupPage {
 	this.http.post(url, postBodyLogin, options)
 			.subscribe(() =>
 			{
+        this.addUserDetail();
 				this.navCtrl.setRoot(LoginPage);
 			},
 			error =>
@@ -61,6 +93,8 @@ export class SignupPage {
 				this.handleError(error);
 			});
   }
+
+
 
   handleError(error) {
         console.error(error);
