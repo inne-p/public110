@@ -2,7 +2,7 @@
 Public 110 with Ionic 2
 Inne P
 "# public110" 
-First, do npm install
-Second, install the requirement plugin
+##### First, do `npm install`
+##### Second, install the requirement plugin
 
-2016
+##### 2016
