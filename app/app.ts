@@ -8,7 +8,7 @@ import {SignupPage} from './pages/signup/signup';
 import {HomePage} from './pages/home/home';
 import {AboutPage} from './pages/about/about';
 import {ContactPage} from './pages/contact/contact';
-
+import { BioPage } from './pages/bio/bio';
 import {PolisiterdekatPage} from './pages/polisiterdekat/polisiterdekat';
 import {LaporPage} from './pages/lapor/lapor';
 import {InfodpoPage} from './pages/infodpo/infodpo';
