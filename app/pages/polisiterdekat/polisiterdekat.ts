@@ -22,18 +22,40 @@ export class PolisiterdekatPage {
 ionViewLoaded(){
     this.loadMap();
   }
- 
+
   loadMap(){
- 
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
- 
+
+    /*let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+
     let mapOptions = {
       center: latLng,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
- 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
- 
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);*/
+
+    let locationOptions = {timeout: 10000, enableHighAccuracy: true};
+
+        navigator.geolocation.getCurrentPosition(
+
+            (position) => {
+
+                let options = {
+                  center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                  zoom: 16,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+
+                this.map = new google.maps.Map(this.mapElement.nativeElement, options);
+            },
+
+            (error) => {
+                console.log(error);
+            }, locationOptions
+
+        );
+
+
   }
 }
