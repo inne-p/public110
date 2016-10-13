@@ -8,7 +8,7 @@
     <ion-content  class="content-signup has-header">
 
         <form (ngSubmit)="getRegister()" #signupForm="ngForm">
-            <ion-list padding>
+            <ion-list padding-left padding-right>
               <ion-item class="item-login">
                 <ion-label floating>Email</ion-label>
                 <ion-input class="form-control " required [(ngModel)]="signup.email" type="email" name="email" id="email"></ion-input>
