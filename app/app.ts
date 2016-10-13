@@ -39,7 +39,7 @@ export class MyApp {
       { title: 'Info Lalu Lintas', component: LalulintasPage },
       { title: 'Prosedur Kepolisian', component: ProsedurPage },
       { title: 'Settings', component: SignupPage },
-      { title: 'Logout', component: SignupPage }
+      { title: 'Logout', component: LoginPage }
     ];
 
   }
