@@ -8,6 +8,7 @@ import {NavController, AlertController, Platform} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {LocationTracker} from '../../providers/location-tracker/location-tracker';
 import 'rxjs/add/operator/toPromise';
+import { BioPage } from '../../pages/bio/bio';
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
@@ -40,8 +41,33 @@ export class LoginPage {
   			{
   				let body = data.json();
   				console.log(body);
+
   				this.tracker.logedin(this.login.email, body);
-  				this.navCtrl.setRoot(HomePage)
+          console.log(this.tracker.nik);
+          let headers = new Headers({ 'Content-Type': 'application/json' });
+          let options = new RequestOptions({ headers: headers });
+          this.http.get("http://107.167.177.146/api-public110/api/publiks?filter[where][email]="+this.login.email+"&access_token=" + body.id, options)
+              .subscribe((data) =>
+              {
+                let items = data.json();
+                console.log(items);
+                console.log(items[0].email);console.log(items[0].telp);
+                if(items[0].telp==null || items[0].telp=='' ){
+                  this.navCtrl.setRoot(BioPage);
+                }else{
+                  this.navCtrl.setRoot(HomePage);
+                }
+              },
+              error =>
+              {
+                let alert = this.alertController.create({
+                  title: 'Peringatan',
+                  subTitle: 'Pengambilan data gagal. Cek koneksi internet',
+                  buttons: ['OK']
+                });
+                alert.present();
+              });
+
   			},
   			error =>
   			{
